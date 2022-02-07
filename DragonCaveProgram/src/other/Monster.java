@@ -4,7 +4,8 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import Component.FightDialoguePanel;
+import Component.DragonAttackPanel;
+import Component.MonsterAttackPanel;
 import Dragon.Hatchling;
 import Dragon.Reptile;
 import Main.MainFrame;
@@ -12,18 +13,18 @@ import Main.MainFrame;
 //몬스터
 public class Monster {
 	// 체력
-	public byte hp;
+	public int hp;
 	// 공격력
-	public byte attack;
+	public int attack;
 	// 공격속도
-	public byte attack_speed;
+	public int attack_speed;
 
 	public Monster() {
 		Random random = new Random();
 		// 체력과 공격력 랜덤하게 생성
-		hp = (byte) (100 + (byte) random.nextInt(30));
-		attack = (byte) (20 + (byte) random.nextInt(10));
-		attack_speed = (byte) random.nextInt(10);
+		hp = 100 + random.nextInt(30);
+		attack = 20 + random.nextInt(30);
+		attack_speed = 1 + random.nextInt(5);
 	}
 
 	// 공격 메서드
@@ -45,6 +46,7 @@ public class Monster {
 		@Override
 		public void run() {
 			boolean is_fight = true;
+			int attack_count = 0;
 			while (is_fight) {
 				try {
 					// 공격속도 반영해서 공격
@@ -53,29 +55,30 @@ public class Monster {
 					if (hp <= 0) {
 						// 싸움 종료
 						is_fight = false;
-						// 알림 패널 안보이게하기
-						MainFrame.fight_dialogue_panel.setVisible(false);
 					}
 					// 몬스터의 공격력만큼 드래곤 체력 하락
 					target_reptile.hp -= attack;
+					attack_count++;
 					// 드래곤 체력 체크
 					// 드래곤의 체력 0 이상
 					if (target_reptile.hp > 0) {
-						
-						FightDialoguePanel.insert_dialogue("몬스터가 공격해왔다. (남은 드래곤 체력: " + target_reptile.hp + ")");
+
+						MonsterAttackPanel.insert_dialogue("<html>몬스터가 " + attack_count
+								+ " 번째 공격을 해왔다.<br> (남은 드래곤 체력: " + target_reptile.hp + ")</html>");
 					}
 					// 드래곤 체력 0일 때
 					else if (target_reptile.hp <= 0) {
-						FightDialoguePanel.insert_dialogue("몬스터가 공격해왔다. (남은 드래곤 체력: 0)");
+						MonsterAttackPanel
+								.insert_dialogue("<html>몬스터가 " + attack_count + " 번째 공격해왔다.<br> (남은 드래곤 체력: 0)</html>");
 						// 싸움 종료
 						is_fight = false;
-						// 알림 패널 안보이게하기
-						MainFrame.fight_dialogue_panel.setVisible(false);
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+			// 알림 패널 안보이게하기
+			MainFrame.monster_attack_panel.setVisible(false);
 
 		}
 

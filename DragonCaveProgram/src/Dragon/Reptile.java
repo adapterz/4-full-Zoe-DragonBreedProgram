@@ -3,7 +3,7 @@ package Dragon;
 import javax.swing.JOptionPane;
 
 import Component.DialoguePanel;
-import Component.FightDialoguePanel;
+import Component.DragonAttackPanel;
 import Component.PaintManager;
 import Main.MainFrame;
 import other.BackGround;
@@ -88,6 +88,7 @@ abstract public class Reptile extends Dragon {
 		@Override
 		public void run() {
 			boolean is_fight = true;
+			int attack_count = 0;
 			while (is_fight) {
 				try {
 					// 공격속도 반영해서 공격
@@ -99,22 +100,21 @@ abstract public class Reptile extends Dragon {
 						System.exit(0);
 						// 싸움 종료
 						is_fight = false;
-						// 알림 패널 안보이게하기
-						MainFrame.fight_dialogue_panel.setVisible(false);
 					}
 					// 드래곤의 공격력만큼 몬스터 체력 하락
 					target_monster.hp -= attack;
+					attack_count++;
 					// 몬스터 체력 체크
 						// 몬스터의 체력 0 이상
 					if(target_monster.hp >0) {
-						FightDialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)는 몬스터를 공격했다. (남은 몬스터 체력: " + target_monster.hp + ")");
+						DragonAttackPanel.insert_dialogue("<html>"+MainFrame.dragon.name + "(이)는 몬스터를 <br>"+ attack_count+"번째 공격했다.<br> (남은 몬스터 체력: " + target_monster.hp + ")</html>");
 						
 					}
 						// 몬스터 체력 0일 때
 					else if (target_monster.hp <= 0)
 					{
-						FightDialoguePanel.insert_dialogue( MainFrame.dragon.name + "(이)는 몬스터를 공격했다. (남은 몬스터 체력: 0)");
-						JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 승리했습니다. (호감도+2, 진화게이지+1, 포만감-5)");
+						DragonAttackPanel.insert_dialogue("<html>"+ MainFrame.dragon.name + "(이)는 몬스터를<br>"+ attack_count+"번째 공격했다.<br>  (남은 몬스터 체력: 0)</html>");
+						JOptionPane.showMessageDialog(null, "<html>"+MainFrame.dragon.name + "<br>(이)가 승리했습니다.<br>  (호감도+2, 진화게이지+1, 포만감-5)</html>");
 						JOptionPane.showMessageDialog(null, "집으로 돌아갑니다.");
 						// 행동에 따른 드래곤 상태값 변경
 						Reptile downcast_reptile = (Reptile) MainFrame.dragon;
@@ -135,13 +135,13 @@ abstract public class Reptile extends Dragon {
 						}
 						// 싸움 종료
 						is_fight = false;
-						// 알림 패널 안보이게하기
-						MainFrame.fight_dialogue_panel.setVisible(false);
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+			// 알림 패널 안보이게하기
+			MainFrame.dragon_attack_panel.setVisible(false);
 
 		}
 

@@ -181,6 +181,7 @@ public class JuvenileTodoList extends TodoList {
 		MainFrame.todolist_juvenile = null;
 		// 어른 드래곤 그려주기
 		PaintManager.stage = Growth.ADULT;
+		MainFrame.main_background.repaint();
 
 		// 진화 알림창
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 어른이 됐어요!");

@@ -11,31 +11,23 @@ import other.BackGround;
 import other.Growth;
 
 public class PaintManager extends JPanel {
+	// 상대경로
+	String path = System.getProperty("user.dir");
 	// 배경별그림
-	private Image loadingScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/loading.png").getImage();
-	private Image mainScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/home.jpg").getImage();
-	private Image fightScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/yard_1.png").getImage();
-	private Image flightScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/flight.png").getImage();
-	private Image happy_endScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/happyending.png").getImage();
-	private Image endScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/normalending.png").getImage();;
-	private Image sad_endScreen = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/sadending.png").getImage();;
+	private Image loadingScreen = new ImageIcon(path + "/src/Image/loading.png").getImage();
+	private Image mainScreen = new ImageIcon(path + "/src/Image/home.jpg").getImage();
+	private Image fightScreen = new ImageIcon(path + "/src/Image/yard_1.png").getImage();
+	private Image flightScreen = new ImageIcon(path + "/src/Image/flight.png").getImage();
+	private Image happy_endScreen = new ImageIcon(path + "/src/Image/happyending.png").getImage();
+	private Image endScreen = new ImageIcon(path + "/src/Image/normalending.png").getImage();;
+	private Image sad_endScreen = new ImageIcon(path + "/src/Image/sadending.png").getImage();;
 
 	// 드래곤의 성장단계별 그림
-	private Image egg_image = new ImageIcon("C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/egg.png")
-			.getImage();
-	private Image hatchling_image = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/hatchling.png").getImage();
-	private Image juvenile_image = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/juvenile.png").getImage();
-	private Image adult_image = new ImageIcon(
-			"C:/Users/yeji1/git/repository/dragon_breeding/DragonCaveProgram/src/Image/adult.png").getImage();
+	private Image egg_image = new ImageIcon(path + "/src/Image/egg.png").getImage();
+	private Image hatchling_image = new ImageIcon(path + "/src/Image/hatchling.png").getImage();
+	private Image juvenile_image = new ImageIcon(path + "/src/Image/juvenile.png").getImage();
+	private Image juvenile_flight = new ImageIcon(path + "/src/Image/juvenile_symmetry.png").getImage();
+	private Image adult_image = new ImageIcon(path + "/src/Image/adult.png").getImage();
 
 	// 그려줄 상태 변수(enum)
 	public static Growth stage; // 보여줄 드래곤의 성장단계 상태
@@ -69,18 +61,18 @@ public class PaintManager extends JPanel {
 			switch (stage) {
 			case HATCHLING:
 
-				g.drawImage(hatchling_image, 200, 500, null);
+				g.drawImage(hatchling_image, 200, 450, null);
 				break;
 			case JUVENILE:
 
-				g.drawImage(juvenile_image, 200, 500, null);
+				g.drawImage(juvenile_image, 200, 400, null);
 				break;
 
 			}
 			// 비행장면
 		} else if (background == BackGround.FLIGHT) {
 			g.drawImage(flightScreen, 0, 0, null);
-			g.drawImage(juvenile_image, 1000, 550, null);
+			g.drawImage(juvenile_flight, 1000, 400, null);
 			// 집
 		} else if (background == BackGround.HOME) {
 			g.drawImage(mainScreen, 0, 0, null);
@@ -88,20 +80,20 @@ public class PaintManager extends JPanel {
 			switch (stage) {
 			case EGG:
 
-				g.drawImage(egg_image, 550, 350, null);
+				g.drawImage(egg_image, 155, 275, null);
 
 				break;
 
 			case HATCHLING:
 
-				g.drawImage(hatchling_image, 580, 350, null);
+				g.drawImage(hatchling_image, 155, 310, null);
 				break;
 			case JUVENILE:
 
-				g.drawImage(juvenile_image, 580, 350, null);
+				g.drawImage(juvenile_image, 145, 280, null);
 				break;
 			case ADULT:
-				g.drawImage(adult_image, 580, 350, null);
+				g.drawImage(adult_image, 580, 300, null);
 				break;
 
 			}

@@ -48,11 +48,11 @@ public class EggTodoList extends TodoList {
 		add(decrease_degree_control);
 
 		// 상태창 버튼
-		JButton status = new JButton("상태창");
-		status.setFont(new Font("210 맨발의청춘 L", Font.BOLD, 12));
-		status.setBackground(SystemColor.controlHighlight);
-		status.setBounds(56, 174, 98, 28);
-		add(status);
+		JButton dragon_status = new JButton("상태창");
+		dragon_status.setFont(new Font("210 맨발의청춘 L", Font.BOLD, 12));
+		dragon_status.setBackground(SystemColor.controlHighlight);
+		dragon_status.setBounds(56, 174, 98, 28);
+		add(dragon_status);
 
 		// 버튼 이벤트 정의
 		// 말하기
@@ -105,7 +105,7 @@ public class EggTodoList extends TodoList {
 		});
 
 		// 상태창
-		status.addActionListener(new ActionListener() {
+		dragon_status.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

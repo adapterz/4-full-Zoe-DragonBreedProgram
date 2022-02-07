@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -16,7 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Component.DialoguePanel;
-import Component.FightDialoguePanel;
+import Component.DragonAttackPanel;
+import Component.MonsterAttackPanel;
 import Component.PackBackGround;
 import Component.PaintManager;
 import Component.TodoList.EggTodoList;
@@ -39,7 +41,8 @@ public class MainFrame {
 	public static JFrame main_frame;
 	public static PaintManager main_background;
 	public static DialoguePanel dialogue_panel;
-	public static FightDialoguePanel fight_dialogue_panel;
+	public static DragonAttackPanel dragon_attack_panel;
+	public static MonsterAttackPanel monster_attack_panel;
 	// 배경컴포넌트들 하나로 묶을 컨테이너
 	public static PackBackGround pack_back;
 	// 할일 메뉴창
@@ -87,8 +90,10 @@ public class MainFrame {
 		dialogue_panel.setVisible(false);
 		
 		// 싸움알림 패널
-		fight_dialogue_panel = new FightDialoguePanel("");
-		fight_dialogue_panel.setVisible(false);
+		dragon_attack_panel = new DragonAttackPanel("");
+		dragon_attack_panel.setVisible(false);
+		monster_attack_panel = new MonsterAttackPanel("");
+		monster_attack_panel.setVisible(false);
 	
 		// 할일목록 패널
 		todolist_egg = new EggTodoList();
@@ -105,7 +110,7 @@ public class MainFrame {
 		// 컨테이너에 컴포넌트 추가 시 순서 설정
 		pack_back.add(main_background, new Integer(0), 0);
 		pack_back.add(dialogue_panel, new Integer(1), 0);
-		pack_back.add(fight_dialogue_panel, new Integer(1), 0);
+		pack_back.add(dragon_attack_panel, new Integer(1), 0);
 
 		main_frame.pack();
 
@@ -114,7 +119,7 @@ public class MainFrame {
 		// 초기화
 		dragon = null;
 		home = new Home();
-
+		
 	}
 }
 
