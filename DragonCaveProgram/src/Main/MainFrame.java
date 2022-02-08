@@ -5,10 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,18 +12,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Component.DialoguePanel;
-import Component.DragonAttackPanel;
-import Component.MonsterAttackPanel;
-import Component.PackBackGround;
-import Component.PaintManager;
-import Component.TodoList.EggTodoList;
-import Component.TodoList.HatchlingTodoList;
-import Component.TodoList.JuvenileTodoList;
 import Dragon.Dragon;
 import Dragon.Egg;
-import other.BackGround;
-import other.Growth;
+import GuiRelatedClass.DialoguePanel;
+import GuiRelatedClass.DragonAttackPanel;
+import GuiRelatedClass.MonsterAttackPanel;
+import GuiRelatedClass.PackBackGround;
+import GuiRelatedClass.PaintManager;
+import enums.BackGround;
+import enums.Growth;
 import other.Home;
 
 public class MainFrame {
@@ -46,9 +39,9 @@ public class MainFrame {
 	// 배경컴포넌트들 하나로 묶을 컨테이너
 	public static PackBackGround pack_back;
 	// 할일 메뉴창
-	public static EggTodoList todolist_egg;
-	public static HatchlingTodoList todolist_hatchling;
-	public static JuvenileTodoList todolist_juvenile;
+	public static GuiTodoList.EggTodoList todolist_egg;
+	public static GuiTodoList.HatchlingTodoList todolist_hatchling;
+	public static GuiTodoList.JuvenileTodoList todolist_juvenile;
 
 	// 프로그램 시작
 	public static void main(String[] args) {
@@ -96,7 +89,7 @@ public class MainFrame {
 		monster_attack_panel.setVisible(false);
 	
 		// 할일목록 패널
-		todolist_egg = new EggTodoList();
+		todolist_egg = new GuiTodoList.EggTodoList();
 		todolist_egg.setVisible(false);
 		main_background.add(todolist_egg);
 

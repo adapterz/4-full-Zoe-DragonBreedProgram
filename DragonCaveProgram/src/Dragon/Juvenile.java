@@ -6,19 +6,25 @@ import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
-import Component.DialoguePanel;
-import Component.PaintManager;
+import GuiRelatedClass.DialoguePanel;
+import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
-import other.BackGround;
+import enums.BackGround;
 
-//2차 상속
+/* 	최상위부모				Dragon (추상)
+ * 	1차상속 		Egg 알   		Reptile (파충류,추상)
+ *  2차상속 				  Hatchling(유아), Juvenile(성장기)
+ *  
+ *  성장단계 Egg -> Hatchling -> Juvenile -> Adult
+ */
+// 드래곤의 성장기 상태 클래스
 public class Juvenile extends Reptile {
 	// 비행 숙련도
-	public byte flight_proficiency;
+	public int flight_proficiency;
 
+	// 초기화 (성장기), Hatchling 상태였을 때 인스턴스를 인자로 받아와서 필드값 반영해주기
 	public Juvenile(Hatchling hatchling_dragon) {
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 성장기가 됐어요.");
-
 		Random random = new Random();
 
 		// 이름
@@ -42,9 +48,9 @@ public class Juvenile extends Reptile {
 
 	}
 
-	// 비행 연습
+	// 비행 연습 메서드
 	public void flying_practic() {
-		// 알림창
+		// 알림내용
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)와 비행연습을 갔어요!");
 		// 타이머(2초간 정지 후 알림 메세지)
 		TimerTask task = new TimerTask() {
@@ -54,18 +60,18 @@ public class Juvenile extends Reptile {
 
 				// 랜덤하게 비행숙련도 오름
 				Random random = new Random();
-				byte random_byte = (byte) (1 + random.nextInt(5));
+				int random_int = 1 + random.nextInt(5);
 
 				// 행동에 따른 드래곤 상태값 변경
 				Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
-				downcast_juvenile.flight_proficiency += random_byte;
+				downcast_juvenile.flight_proficiency += random_int;
 				downcast_juvenile.likeable += 3;
 				downcast_juvenile.evolution++;
 				MainFrame.dragon = downcast_juvenile;
 
-				// 알림창
+				// 알림내용
 				JOptionPane.showMessageDialog(null,
-						"뭔가 어설프지만... 언젠간 날 수 있을지도?(호감도+3, 진화게이지+1, 비행숙련도+" + random_byte + ")");
+						"뭔가 어설프지만... 언젠간 날 수 있을지도?(호감도+3, 진화게이지+1, 비행숙련도+" + random_int + ")");
 
 				// 비행 배경 대신 집 배경 보여주도록 상태 바꿔주기
 				PaintManager.background = BackGround.HOME;
@@ -80,11 +86,12 @@ public class Juvenile extends Reptile {
 
 	}
 
-	// 밥주기 (오버라이딩)
+	// 드래곤에게 밥주기(오버라이딩)
+	// 콤보박스 선택 요소를 인자로 받아와서 분기처리
+	// 콤보박스 요소: "먹이기", "과일", "슈퍼웜", "작은동물"
 	@Override
 	public void feed(String what_eat) {
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
-		// { "먹이기", "과일", "슈퍼웜", "작은동물" };
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤 상태값 변경
 			downcast_juvenile.likeable += 2;
@@ -92,7 +99,7 @@ public class Juvenile extends Reptile {
 			downcast_juvenile.full += 1;
 			downcast_juvenile.hp += 1;
 
-			// 알림문구
+			// 알림내용
 			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+1, 체력+1)");
 
 		} else if (what_eat.equals("슈퍼웜")) {
@@ -102,7 +109,7 @@ public class Juvenile extends Reptile {
 			downcast_juvenile.full += 2;
 			downcast_juvenile.hp += 2;
 
-			// 알림문구
+			// 알림내용
 			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 슈퍼웜을 줬어요! (호감도-3, 진화게이지+1, 포만감+4, 체력+2)");
 
 		} else if (what_eat.equals("작은동물")) {
@@ -118,7 +125,7 @@ public class Juvenile extends Reptile {
 		MainFrame.dragon = downcast_juvenile;
 	}
 
-	// 진화체크
+	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	@Override
 	public boolean is_evolution() {
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
@@ -146,7 +153,6 @@ public class Juvenile extends Reptile {
 			// 진화게이지 15 이상이면 진화
 		} else if (evolution_15 > 15) {
 			// 알림문구
-
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_15 + "(으)로 성장!");
 
 			return true;

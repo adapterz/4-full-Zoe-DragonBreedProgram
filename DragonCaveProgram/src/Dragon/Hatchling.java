@@ -4,14 +4,20 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import Component.DialoguePanel;
+import GuiRelatedClass.DialoguePanel;
 import Main.MainFrame;
-import other.Gender;
+import enums.Gender;
 import other.Home;
 
-//2차상속
+/* 	최상위부모				Dragon (추상)
+ * 	1차상속 		Egg 알   		Reptile (파충류,추상)
+ *  2차상속 				  Hatchling(유아), Juvenile(성장기)
+ *  
+ *  성장단계 Egg -> Hatchling -> Juvenile -> Adult
+ */
+// 드래곤의 유아기 상태 클래스
 public class Hatchling extends Reptile {
-	// 초기화 (유아기)
+	// 초기화 (유아기), Egg 상태였을 때 인스턴스를 인자로 받아와서 필드값 반영해주기
 	public Hatchling(Egg egg_dragon) {
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 부화를 시작합니다.");
 		Random random = new Random();
@@ -25,24 +31,24 @@ public class Hatchling extends Reptile {
 		// 체력
 		hp = 100 + random.nextInt(30);
 		// 공격력
-		attack = 20 +random.nextInt(20);
+		attack = 20 + random.nextInt(20);
 		// 공격속도
-		attack_speed = 1+ random.nextInt(10);
+		attack_speed = 1 + random.nextInt(10);
 		// 포만감
 		full = 7;
 
-		// 온도 25도 이하 시 부화 실패, 게임종료
+		// 집의 온도 25도 이하 시 부화 실패, 게임종료
 		if (MainFrame.home.home_degree < 25) {
 			JOptionPane.showMessageDialog(null, "온도가 25도 이하라 부화에 실패했습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
-		// 온도에 따라 gender값 결정
+		// 집의 온도에 따라 gender값 결정
 		// 암컷
 		else if (25 <= MainFrame.home.home_degree && MainFrame.home.home_degree <= 30) {
 			gender = Gender.WOMAN;
 			JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 여아에요~!");
 
-		} // 랜덤
+		} // 성별 랜덤
 		else if (30 < MainFrame.home.home_degree && MainFrame.home.home_degree <= 34) {
 			if (random.nextBoolean()) {
 				gender = Gender.MAN;
@@ -60,9 +66,10 @@ public class Hatchling extends Reptile {
 	}
 
 	// 행동 메서드
-	// 밥주기(오버라이딩)
+	// 드래곤에게 밥주기(오버라이딩)
+	// 콤보박스 선택 요소를 인자로 받아와서 분기처리
+	// 콤보박스 요소: "과일","피닉스웜","귀뚜라미"
 	public void feed(String what_eat) {
-		// "먹이기","과일","피닉스웜","귀뚜라미"
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤의 상태값 변경
@@ -96,7 +103,7 @@ public class Hatchling extends Reptile {
 		MainFrame.dragon = downcast_dragon_hatchling;
 	}
 
-	// 진화체크
+	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	@Override
 	public boolean is_evolution() {
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
@@ -108,7 +115,7 @@ public class Hatchling extends Reptile {
 					"체력이 0 이하라 " + downcast_dragon_hatchling.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
-		// 포만감 0이면 게임 종료
+		// 포만감 0 이면 게임 종료
 		if (downcast_dragon_hatchling.full <= 0) {
 			JOptionPane.showMessageDialog(null,
 					"포만감이 0 이하라 " + downcast_dragon_hatchling.name + "(이)가 죽었습니다. 게임을 종료합니다");
@@ -116,7 +123,7 @@ public class Hatchling extends Reptile {
 		}
 		// 호감도 14 이상이면 진화
 		if (likeable_14 > 14) {
-			// 쥬버나일(다음단계) 생성자 호출
+			// 다음 성장단계 쥬버나일 생성자 호출
 			MainFrame.dragon = new Juvenile(downcast_dragon_hatchling);
 			// 알림문구
 			DialoguePanel.insert_dialogue("호감도 " + likeable_14 + "(으)로 성장!");
@@ -125,7 +132,7 @@ public class Hatchling extends Reptile {
 			// 진화게이지 7 이상이면 진화
 		} else if (evolution_7 > 7) {
 
-			// 쥬버나일(다음단계) 생성자 호출
+			// 다음 성장단계 쥬버나일 생성자 호출
 			MainFrame.dragon = new Juvenile(downcast_dragon_hatchling);
 			// 알림문구
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_7 + "(으)로 성장!");

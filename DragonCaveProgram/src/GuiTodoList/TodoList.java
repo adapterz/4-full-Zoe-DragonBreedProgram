@@ -1,4 +1,4 @@
-package Component.TodoList;
+package GuiTodoList;
 
 import java.awt.Font;
 import java.awt.SystemColor;
