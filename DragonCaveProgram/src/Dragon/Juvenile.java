@@ -50,6 +50,8 @@ public class Juvenile extends Reptile {
 
 	// 비행 연습 메서드
 	public void flying_practic() {
+		// 로그
+		MainFrame.LOG.info("Juvenile - 비행연습");
 		// 알림내용
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)와 비행연습을 갔어요!");
 		// 타이머(2초간 정지 후 알림 메세지)
@@ -91,6 +93,9 @@ public class Juvenile extends Reptile {
 	// 콤보박스 요소: "먹이기", "과일", "슈퍼웜", "작은동물"
 	@Override
 	public void feed(String what_eat) {
+		// 로그
+		MainFrame.LOG.info("Juvenile - 밥주기");
+		
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤 상태값 변경
@@ -128,23 +133,35 @@ public class Juvenile extends Reptile {
 	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	@Override
 	public boolean is_evolution() {
+		// 로그
+		MainFrame.LOG.info("Juvenile - 진화/사망 여부 체크");
+		
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
 		byte likeable_23 = downcast_juvenile.likeable;
 		byte evolution_15 = downcast_juvenile.evolution;
 		// 게임종료 조건
 		// 체력이 0 이하면 게임 종료
 		if (downcast_juvenile.hp <= 0) {
+			// 로그
+			MainFrame.LOG.info("Juvenile - 사망");
+			
 			JOptionPane.showMessageDialog(null, "체력이 0 이하라 " + downcast_juvenile.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 포만감 0이면 게임 종료
 		if (downcast_juvenile.full <= 0) {
+			// 로그
+			MainFrame.LOG.info("Juvenile - 사망");
+			
 			JOptionPane.showMessageDialog(null, "포만감이 0 이하라 " + downcast_juvenile.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 진화조건 만족
 		// 호감도 23 이상이면 진화
 		if (likeable_23 > 23) {
+			// 로그
+			MainFrame.LOG.info("Juvenile - 진화");
+			
 			// 알림문구
 			DialoguePanel.insert_dialogue("호감도 " + likeable_23 + "(으)로 성장!");
 			// 진화조건 만족 시 true 반환
@@ -152,6 +169,8 @@ public class Juvenile extends Reptile {
 
 			// 진화게이지 15 이상이면 진화
 		} else if (evolution_15 > 15) {
+			// 로그
+			MainFrame.LOG.info("Juvenile - 진화");
 			// 알림문구
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_15 + "(으)로 성장!");
 

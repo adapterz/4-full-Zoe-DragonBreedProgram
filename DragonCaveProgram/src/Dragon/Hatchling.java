@@ -39,6 +39,9 @@ public class Hatchling extends Reptile {
 
 		// 집의 온도 25도 이하 시 부화 실패, 게임종료
 		if (MainFrame.home.home_degree < 25) {
+			// 로그
+			MainFrame.LOG.info("Egg- 사망");
+			
 			JOptionPane.showMessageDialog(null, "온도가 25도 이하라 부화에 실패했습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
@@ -70,6 +73,9 @@ public class Hatchling extends Reptile {
 	// 콤보박스 선택 요소를 인자로 받아와서 분기처리
 	// 콤보박스 요소: "과일","피닉스웜","귀뚜라미"
 	public void feed(String what_eat) {
+		// 로그
+		MainFrame.LOG.info("Hatchling - 밥주기");
+		
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤의 상태값 변경
@@ -106,23 +112,33 @@ public class Hatchling extends Reptile {
 	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	@Override
 	public boolean is_evolution() {
+		// 로그
+		MainFrame.LOG.info("Hatchling - 진화/사망 여부 체크");
+		
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 		byte likeable_14 = downcast_dragon_hatchling.likeable;
 		byte evolution_7 = downcast_dragon_hatchling.evolution;
 		// 체력이 0 이하면 게임 종료
 		if (downcast_dragon_hatchling.hp <= 0) {
+			// 로그
+			MainFrame.LOG.info("Hatchling - 사망");
+			
 			JOptionPane.showMessageDialog(null,
 					"체력이 0 이하라 " + downcast_dragon_hatchling.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 포만감 0 이면 게임 종료
 		if (downcast_dragon_hatchling.full <= 0) {
+			// 로그
+			MainFrame.LOG.info("Hatchling - 사망");
 			JOptionPane.showMessageDialog(null,
 					"포만감이 0 이하라 " + downcast_dragon_hatchling.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 호감도 14 이상이면 진화
 		if (likeable_14 > 14) {
+			// 로그
+			MainFrame.LOG.info("Hatchling - 진화");
 			// 다음 성장단계 쥬버나일 생성자 호출
 			MainFrame.dragon = new Juvenile(downcast_dragon_hatchling);
 			// 알림문구
@@ -131,7 +147,8 @@ public class Hatchling extends Reptile {
 			return true;
 			// 진화게이지 7 이상이면 진화
 		} else if (evolution_7 > 7) {
-
+			// 로그
+			MainFrame.LOG.info("Hatchling - 진화");
 			// 다음 성장단계 쥬버나일 생성자 호출
 			MainFrame.dragon = new Juvenile(downcast_dragon_hatchling);
 			// 알림문구

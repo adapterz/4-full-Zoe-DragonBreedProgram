@@ -51,6 +51,7 @@ public class MainFrame {
 		// 메인 스레드
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				// 로그
 				LOG.info("프로그램 시작");
 				try {
 					MainFrame window = new MainFrame();
@@ -153,6 +154,7 @@ class KeyListner extends KeyAdapter {
 			// 기본 프레임 설정
 			setVisible(true);
 			setTitle("Set Dragon's Name");
+			setResizable(false);
 			setSize(300, 150);
 			setLocationRelativeTo(null);
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

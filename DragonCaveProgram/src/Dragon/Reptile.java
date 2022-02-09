@@ -37,6 +37,8 @@ abstract public class Reptile extends Dragon {
 // 행동메서드
 	// 드래곤을 쓰다듬기
 	public void stroke() {
+		// 로그
+		MainFrame.LOG.info("Reptile - 쓰다듬기");
 		// 알림내용
 		DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)를 쓰다듬어줬더니 좋아하네요! (호감도+2, 진화게이지+1, 포만감-1)");
 
@@ -50,8 +52,9 @@ abstract public class Reptile extends Dragon {
 
 	// 드래곤을 씻기기
 	public void wash() {
+		// 로그
+		MainFrame.LOG.info("Reptile - 씻기기");
 		// 알림문구
-
 		DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)를 씻겨줬어요!(호감도+1, 진화게이지+2, 포만감-2)");
 
 		// 행동에 따른 드래곤 상태값 변경
@@ -71,6 +74,8 @@ abstract public class Reptile extends Dragon {
 	// 몬스터가 드래곤을 공격하는 스레드와 드래곤이 몬스터를 공격하는 스레드 따로 호출 (각 객체의 공격속도에 따라 공격간격 정해짐)
 	// 매 공격시 공격력만큼 체력 깎음
 	public void fight() {
+		// 로그
+		MainFrame.LOG.info("Reptile - 전투");
 		// 몬스터 마주침 (해당 메서드의 지역변수)
 		Monster monster = new Monster();
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 야생의 몬스터를 만났다.");

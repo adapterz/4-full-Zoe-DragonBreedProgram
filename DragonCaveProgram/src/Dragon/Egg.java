@@ -19,6 +19,8 @@ public class Egg extends Dragon {
 	// 집의 온도(home_degree)는 알이 무사히 부화할 수 있는지, 알이 부화했을 때 드래곤의 성별에 영향을 끼칩니다
 	// 온도 올려주기
 	public void increase_degree_control() {
+		// 로그
+		MainFrame.LOG.info("Egg- 온도 상승");
 		// Home 클래스의 온도조절 메서드 호출
 		MainFrame.home.increase_degree();
 		// 해당 이벤트에 대한 드래곤의 상태값 변화
@@ -34,6 +36,8 @@ public class Egg extends Dragon {
 
 	// 온도내리기
 	public void decrease_degree_control() {
+		// 로그
+		MainFrame.LOG.info("Egg- 온도 하락");
 		// Home 클래스의 온도조절 메서드 호출
 		MainFrame.home.decrease_degree();
 		// 해당 이벤트에 대한 드래곤의 상태값 변화
@@ -49,6 +53,9 @@ public class Egg extends Dragon {
 
 	// (일방적으로) 알에게 말걸기
 	public void talk_to() {
+		// 로그
+		MainFrame.LOG.info("Egg- 말걸기");
+		
 		Random random = new Random();
 		int random_int = random.nextInt(3);
 
@@ -86,11 +93,15 @@ public class Egg extends Dragon {
 
 	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	public boolean is_evolution() {
+		// 로그
+		MainFrame.LOG.info("Egg- 진화/사망 여부 체크");
 		Egg downcast_dragon_egg = (Egg) MainFrame.dragon;
 		byte likeable_7 = downcast_dragon_egg.likeable;
 		byte evolution_4 = downcast_dragon_egg.evolution;
 		// 호감도 7 이상이면 진화
 		if (likeable_7 > 7) {
+			// 로그
+			MainFrame.LOG.info("Egg- 진화");
 			// 메인 프레임의 dragon 변수가 가리키는 인스턴스 Hatchling 으로 바꿔주기
 			// Egg 상태일 때 인스턴스의 상태값 반영하기 위해 인자로 넘겨주기
 			MainFrame.dragon = new Hatchling(downcast_dragon_egg);
@@ -100,7 +111,8 @@ public class Egg extends Dragon {
 			return true;
 			// 진화게이지 4 이상이면 진화
 		} else if (evolution_4 > 4) {
-
+			// 로그
+			MainFrame.LOG.info("Egg- 진화");
 			MainFrame.dragon = new Hatchling(downcast_dragon_egg);
 			// 안내문구
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_4 + "로 성장!");

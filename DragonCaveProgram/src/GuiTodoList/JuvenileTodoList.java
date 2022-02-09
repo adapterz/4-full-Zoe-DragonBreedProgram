@@ -198,6 +198,8 @@ public class JuvenileTodoList extends TodoList {
 		// 드래곤 객체의 호감도에 따라 다른 엔딩 분기처리
 		// 해피엔딩(호감도 23 초과)
 		if (MainFrame.dragon.likeable > 23) {
+			// 로그
+			MainFrame.LOG.info("Adult - 해피엔딩");
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.HAPPY_END;
 			MainFrame.main_background.repaint();
@@ -205,6 +207,9 @@ public class JuvenileTodoList extends TodoList {
 		}
 		// 세드엔딩(호감도 7 미만)
 		else if (MainFrame.dragon.likeable < 7) {
+
+			// 로그
+			MainFrame.LOG.info("Adult - 세드엔딩");
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.SAD_END;
 			MainFrame.main_background.repaint();
@@ -212,6 +217,9 @@ public class JuvenileTodoList extends TodoList {
 		}
 		// 노말엔드(호감도 7~23)
 		else {
+
+			// 로그
+			MainFrame.LOG.info("Adult - 노말엔딩");
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.NORMAL_END;
 			MainFrame.main_background.repaint();
