@@ -22,7 +22,8 @@
       
  ### B. 드래곤 클래스 ( 성장단계별로 클래스 구현)
  ####  한눈에 보기
- ![Untitled Workspace](https://user-images.githubusercontent.com/98700133/153114563-c783fd0a-8d14-43b6-86f9-904781d0dae2.jpg)
+ ![Untitled Workspace (3)](https://user-images.githubusercontent.com/98700133/153141040-e48456cb-5f51-4f0e-899f-4eb0e020128f.jpg)
+
   
   
 * 드래곤 성장단계: Egg -> Hatchling -> Juvenile -> Adult
