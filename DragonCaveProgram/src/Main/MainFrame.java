@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,12 +43,15 @@ public class MainFrame {
 	public static GuiTodoList.EggTodoList todolist_egg;
 	public static GuiTodoList.HatchlingTodoList todolist_hatchling;
 	public static GuiTodoList.JuvenileTodoList todolist_juvenile;
+	// 로그 남기기 위한 변수
+	public static final Logger LOG = Logger.getGlobal();
 
 	// 프로그램 시작
 	public static void main(String[] args) {
 		// 메인 스레드
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				LOG.info("프로그램 시작");
 				try {
 					MainFrame window = new MainFrame();
 					window.main_frame.setVisible(true);
