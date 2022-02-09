@@ -35,21 +35,24 @@
  * 멤버메서드: 진화조건 만족체크 메서드(추상메서드)
   
 #### 1-1. Egg extends Dragon
- * 멤버메서드: 드래곤에게 말걸기, 집 온도 상승, 집 온도 하락, 진화조건 만족 체크(오버라이딩)
+ * 멤버메서드: 알에게 말걸기, 집 온도 상승, 집 온도 하락, 진화조건 만족 체크(오버라이딩)
  
+ ![egg](https://user-images.githubusercontent.com/98700133/153141650-7546fddb-27e7-4fff-ad35-59487322f887.png)
+
 #### 1-2. Reptile extends Dragon(추상클래스)
  * 멤버변수: 포만감, 공격력, 공격속도, 체력, 성별(enum)
  * 멤버메서드: 드래곤 쓰다듬기, 드래곤 씻기기, 드래곤과 싸우기, 드래곤에게 밥주기(추상메서드)
  
 #### 2-1. Hatchling extends Reptile
  * 멤버메서드: 드래곤에게 밥주기(오버라이딩), 진화조건 만족 체크(오버라이딩)
+ 
+![hatchling](https://user-images.githubusercontent.com/98700133/153141663-2007b38f-3ac6-42e8-a30a-5f1c9d071dd2.png)
 
 #### 2-2. Juvenile extends Reptile
  * 멤버변수: 비행숙련도
  * 멤버메서드: 비행연습하기, 드래곤에게 밥주기(오버라이딩), 진화조건 만족 체크(오버라이딩)
 
-
-
+![juvenile](https://user-images.githubusercontent.com/98700133/153141705-62dd2b0e-8644-42b3-a826-981be9f87d25.png)
 
 ### C. 몬스터 클래스
  * 드래곤과 싸울 대상 클래스
