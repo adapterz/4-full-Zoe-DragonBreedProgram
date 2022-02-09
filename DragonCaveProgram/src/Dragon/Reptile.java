@@ -129,14 +129,15 @@ abstract public class Reptile extends Dragon {
 					if (target_monster.hp > 0) {
 						// 드래곤-> 몬스터 공격 알림내용
 						DragonAttackPanel.insert_dialogue("<html>" + MainFrame.dragon.name + "(이)는 몬스터를 <br>"
-								+ attack_count + "번째 공격했다.<br> (남은 몬스터 체력: " + target_monster.hp + ")</html>");
+								+ attack_count + "번째 공격했다.<br> (남은 몬스터 체력: " + target_monster.hp + ")<br>공격력:" + attack
+								+ "</html>");
 
 					}
 					// 몬스터 체력 0일 때(승리, 해당 메서드 종료)
 					else if (target_monster.hp <= 0) {
 						// 승리 알림내용
 						DragonAttackPanel.insert_dialogue("<html>" + MainFrame.dragon.name + "(이)는 몬스터를<br>"
-								+ attack_count + "번째 공격했다.<br>  (남은 몬스터 체력: 0)</html>");
+								+ attack_count + "번째 공격했다.<br>  (남은 몬스터 체력: 0)<br>공격력:" + attack + "</html>");
 						JOptionPane.showMessageDialog(null, "<html>" + MainFrame.dragon.name
 								+ "<br>(이)가 승리했습니다.<br>  (호감도+2, 진화게이지+1, 포만감-5)</html>");
 						JOptionPane.showMessageDialog(null, "집으로 돌아갑니다.");

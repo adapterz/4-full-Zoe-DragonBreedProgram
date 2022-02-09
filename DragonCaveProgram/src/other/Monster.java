@@ -68,13 +68,14 @@ public class Monster {
 					// 드래곤의 체력 0 이상
 					if (target_reptile.hp > 0) {
 						// 몬스터-> 드래곤 공격 알림내용
-						MonsterAttackPanel.insert_dialogue("<html>몬스터가 " + attack_count
-								+ " 번째 공격을 해왔다.<br> (남은 드래곤 체력: " + target_reptile.hp + ")</html>");
+						MonsterAttackPanel
+								.insert_dialogue("<html>몬스터가 " + attack_count + " 번째 공격을 해왔다.<br> (남은 드래곤 체력: "
+										+ target_reptile.hp + ")<br>공격력:" + attack + "</html>");
 					}
 					// 드래곤 체력 0일 때 (드래곤의 패배)
 					else if (target_reptile.hp <= 0) {
-						MonsterAttackPanel
-								.insert_dialogue("<html>몬스터가 " + attack_count + " 번째 공격해왔다.<br> (남은 드래곤 체력: 0)</html>");
+						MonsterAttackPanel.insert_dialogue("<html>몬스터가 " + attack_count
+								+ " 번째 공격해왔다.<br> (남은 드래곤 체력: 0)<br>공격력:" + attack + "</html>");
 						// 싸움 종료
 						is_fight = false;
 					}

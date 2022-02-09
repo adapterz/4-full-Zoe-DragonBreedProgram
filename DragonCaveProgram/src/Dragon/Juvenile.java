@@ -49,7 +49,7 @@ public class Juvenile extends Reptile {
 	}
 
 	// 비행 연습 메서드
-	public void flying_practic() {
+	public void flying_practice() {
 		// 로그
 		MainFrame.LOG.info("Juvenile - 비행연습");
 		// 알림내용

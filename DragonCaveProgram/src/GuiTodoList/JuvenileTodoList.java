@@ -105,7 +105,7 @@ public class JuvenileTodoList extends TodoList {
 				MainFrame.main_background.repaint();
 
 				// Juvenile 클래스의 비행연습 메서드 호출
-				downcast_dragon_juvenile.flying_practic();
+				downcast_dragon_juvenile.flying_practice();
 
 				// 비행종료 후 집 배경의 알림내용 보이게하기
 				MainFrame.dialogue_panel.setVisible(true);
