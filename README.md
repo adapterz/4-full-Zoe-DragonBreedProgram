@@ -152,13 +152,13 @@
 
   행동에 따라 드래곤 객체의 필드값들이 변하며 '상태창' 버튼을 눌러서 변화값을 확인할 수 있습니다.
   
-  ![image](https://user-images.githubusercontent.com/98700133/153119139-23698af9-cf73-4611-9903-08dddfaa59c4.png)
+  ![image](https://user-images.githubusercontent.com/98700133/153134970-784f9e8f-29ff-496a-9269-0d84bbaaaadd.png) 
 
   '싸우기' 버튼을 누르면 드래곤과 몬스터가 공격속도에 따라 독립적으로 공격합니다.
   
  * 엔딩 화면
  
-  ![image](https://user-images.githubusercontent.com/98700133/153119405-6a33a6a1-39c8-44e7-abb3-5f0d7d0c9687.png)
+  ![image](https://user-images.githubusercontent.com/98700133/153135055-8626f968-f4b7-4837-be84-c94ab7c38ed2.png)
 
   호감도에 따라 엔딩이 갈립니다.
 
