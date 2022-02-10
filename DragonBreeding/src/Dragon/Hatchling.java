@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import GuiRelatedClass.DialoguePanel;
+import GuiRelatedClass.DragonStatePanel;
 import Main.MainFrame;
 import enums.Gender;
 import other.Home;
@@ -41,7 +42,7 @@ public class Hatchling extends Reptile {
 		if (MainFrame.home.home_degree < 25) {
 			// 로그
 			MainFrame.LOG.info("Egg- 사망");
-			
+
 			JOptionPane.showMessageDialog(null, "온도가 25도 이하라 부화에 실패했습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
@@ -50,22 +51,29 @@ public class Hatchling extends Reptile {
 		else if (25 <= MainFrame.home.home_degree && MainFrame.home.home_degree <= 30) {
 			gender = Gender.WOMAN;
 			JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 여아에요~!");
+			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name + "<br>(이)는 과일을 좋아해요!</html>");
 
 		} // 성별 랜덤
 		else if (30 < MainFrame.home.home_degree && MainFrame.home.home_degree <= 34) {
 			if (random.nextBoolean()) {
 				gender = Gender.MAN;
 				JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 남아에요~!");
+				DragonStatePanel.insert_dialogue("<html>체력 보충 후 전투를 <br>나가보는건 어떨까요?</html>");
+				attack += 5;
 			} else {
 				gender = Gender.WOMAN;
 				JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 여아에요~!");
+				DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name + "<br>(이)는 과일을 좋아해요!</html>");
 
 			}
 			// 수컷
 		} else if (34 < MainFrame.home.home_degree) {
 			gender = Gender.MAN;
 			JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 남아에요~!");
+			DragonStatePanel.insert_dialogue("<html>체력 보충 후 전투를 <br>나가보는건 어떨까요?</html>");
+			attack += 5;
 		}
+
 	}
 
 	// 행동 메서드
@@ -75,36 +83,37 @@ public class Hatchling extends Reptile {
 	public void feed(String what_eat) {
 		// 로그
 		MainFrame.LOG.info("Hatchling - 밥주기");
-		
+
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤의 상태값 변경
 			downcast_dragon_hatchling.likeable += 2;
 			downcast_dragon_hatchling.evolution++;
 			downcast_dragon_hatchling.full += 2;
-			downcast_dragon_hatchling.hp += 3;
+			downcast_dragon_hatchling.hp += 30;
 
 			// 알림문구
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+2, 체력+3)");
-
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+2, 체력+30)");
+			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 좋아하네요!</html>");
 		} else if (what_eat.equals("피닉스웜")) {
 			// 행동에 따른 드래곤의 상태값 변경
 			downcast_dragon_hatchling.likeable -= 2;
 			downcast_dragon_hatchling.evolution++;
 			downcast_dragon_hatchling.full += 4;
-			downcast_dragon_hatchling.hp += 5;
+			downcast_dragon_hatchling.hp += 20;
 
 			// 알림문구
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 피닉스웜을 줬어요! (호감도-2, 진화게이지+1, 포만감+4, 체력+5)");
-
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 피닉스웜을 줬어요! (호감도-2, 진화게이지+1, 포만감+4, 체력+20)");
+			DragonStatePanel.insert_dialogue("포만감이 많이 찼어요!");
 		} else if (what_eat.equals("귀뚜라미")) {
 			// 행동에 따른 드래곤의 상태값 변경
 			downcast_dragon_hatchling.likeable -= 3;
 			downcast_dragon_hatchling.evolution += 3;
 			downcast_dragon_hatchling.full += 2;
-			downcast_dragon_hatchling.hp += 7;
+			downcast_dragon_hatchling.hp += 50;
 			// 알림문구
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 귀뚜라미를 줬어요! (호감도-3, 진화게이지+3, 포만감+2, 체력+7)");
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 귀뚜라미를 줬어요! (호감도-3, 진화게이지+3, 포만감+2, 체력+50)");
+			DragonStatePanel.insert_dialogue("체력이 많이 찼어요!");
 		}
 		MainFrame.dragon = downcast_dragon_hatchling;
 	}
@@ -114,7 +123,7 @@ public class Hatchling extends Reptile {
 	public boolean is_evolution() {
 		// 로그
 		MainFrame.LOG.info("Hatchling - 진화/사망 여부 체크");
-		
+
 		Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 		byte likeable_14 = downcast_dragon_hatchling.likeable;
 		byte evolution_7 = downcast_dragon_hatchling.evolution;
@@ -122,7 +131,7 @@ public class Hatchling extends Reptile {
 		if (downcast_dragon_hatchling.hp <= 0) {
 			// 로그
 			MainFrame.LOG.info("Hatchling - 사망");
-			
+
 			JOptionPane.showMessageDialog(null,
 					"체력이 0 이하라 " + downcast_dragon_hatchling.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);

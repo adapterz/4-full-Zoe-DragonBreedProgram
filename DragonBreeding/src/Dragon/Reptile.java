@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import GuiRelatedClass.DialoguePanel;
 import GuiRelatedClass.DragonAttackPanel;
+import GuiRelatedClass.DragonStatePanel;
 import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
 import enums.BackGround;
@@ -149,6 +150,7 @@ abstract public class Reptile extends Dragon {
 						MainFrame.dragon = downcast_reptile;
 						// 싸우기 메서드 종료 - 집 배경으로 변경
 						PaintManager.background = BackGround.HOME;
+						DragonStatePanel.insert_dialogue("<html>체력 보충이 필요해요<br>전투를 자주 나가면 <br>죽을 수도 있어요</html>");
 						MainFrame.main_background.repaint();
 
 						// 유아기 상태일 때 유아기 드래곤 그려주기

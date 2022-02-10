@@ -27,7 +27,7 @@ public class MonsterAttackPanel extends JPanel {
 
 		// 기본 설정
 		setLayout(new BorderLayout());
-		setBounds(800, 50, 300, 200);
+		setBounds(800, 50, 300, 250);
 		setBackground(new Color(211, 211, 211));
 		setForeground(Color.WHITE);
 		setVisible(true);

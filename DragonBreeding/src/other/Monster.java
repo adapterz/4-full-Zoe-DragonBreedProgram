@@ -59,6 +59,8 @@ public class Monster {
 					// 몬스터 체력 0일 때 (드래곤의 승리, 해당 스레드 종료)
 					if (hp <= 0) {
 						// 싸움 종료
+						JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 패배했습니다.");
+						System.exit(0);
 						is_fight = false;
 					}
 					// 몬스터의 공격력만큼 드래곤 체력 하락

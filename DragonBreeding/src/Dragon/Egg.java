@@ -3,7 +3,10 @@ package Dragon;
 import java.util.Random;
 
 import GuiRelatedClass.DialoguePanel;
+import GuiRelatedClass.DragonStatePanel;
+import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
+import enums.Growth;
 
 /* 	최상위부모				Dragon (추상)
  * 	1차상속 		Egg 알   		Reptile (파충류,추상)
@@ -31,7 +34,7 @@ public class Egg extends Dragon {
 		MainFrame.dragon = downcast_dragon_egg;
 		// 집 온도 상승 안내문구
 		DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)의 온도상승! degree: " + MainFrame.home.home_degree);
-
+	
 	}
 
 	// 온도내리기
@@ -102,6 +105,7 @@ public class Egg extends Dragon {
 		if (likeable_7 > 7) {
 			// 로그
 			MainFrame.LOG.info("Egg- 진화");
+			PaintManager.stage = Growth.EGG;
 			// 메인 프레임의 dragon 변수가 가리키는 인스턴스 Hatchling 으로 바꿔주기
 			// Egg 상태일 때 인스턴스의 상태값 반영하기 위해 인자로 넘겨주기
 			MainFrame.dragon = new Hatchling(downcast_dragon_egg);
@@ -113,6 +117,7 @@ public class Egg extends Dragon {
 		} else if (evolution_4 > 4) {
 			// 로그
 			MainFrame.LOG.info("Egg- 진화");
+			PaintManager.stage = Growth.EGG;
 			MainFrame.dragon = new Hatchling(downcast_dragon_egg);
 			// 안내문구
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_4 + "로 성장!");
@@ -130,6 +135,7 @@ public class Egg extends Dragon {
 		evolution = 0;
 		// 이름
 		name = null;
+		
 	}
 
 }

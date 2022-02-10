@@ -28,7 +28,7 @@ public class DragonAttackPanel extends JPanel {
 
 		// 기본 설정
 		setLayout(new BorderLayout());
-		setBounds(50, 50, 300, 200);
+		setBounds(50, 50, 300, 250);
 		setBackground(new Color(211, 211, 211));
 		setForeground(Color.WHITE);
 		setVisible(true);

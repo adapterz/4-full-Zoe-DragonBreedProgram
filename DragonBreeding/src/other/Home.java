@@ -2,6 +2,7 @@ package other;
 
 import java.util.Random;
 
+import GuiRelatedClass.DragonStatePanel;
 import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
 import enums.Growth;
@@ -24,7 +25,7 @@ public class Home {
 	}
 
 	public Home() {
-		home_degree = 33;
+		home_degree = 30;
 		// 집온도 변화 스레드 호출
 		Thread home_thread = new Thread(new HomeWithThread());
 		home_thread.start();
@@ -40,14 +41,14 @@ public class Home {
 			while (is_egg) {
 
 				try {
-					// 성장상태가 Hatchling일 때 스레드 종료
-					if (PaintManager.stage == Growth.HATCHLING) {
-						MainFrame.home = null;
-						is_egg = false;
-						break;
-					}
 					// 0.5 초에 한번씩 집 온도 상승 혹은 하락
 					Thread.sleep(500);
+					// 성장상태가 Hatchling일 때 스레드 종료
+					if (PaintManager.stage == Growth.HATCHLING) {
+						is_egg = false;
+						MainFrame.home = null;
+						break;
+					}
 					byte random_byte = (byte) random.nextInt(2);
 					// 온도 하락
 					if (random_byte == 0) {
@@ -55,7 +56,12 @@ public class Home {
 
 						// 온도 상승
 					} else if (random_byte == 1) {
-						home_degree += 1;
+						home_degree += 2;
+					}
+					if (MainFrame.home.home_degree <= 27) {
+						DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name + "<br>(이)가 추워해요!</html>");
+					} else if(MainFrame.home.home_degree>=33){
+						DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name + "<br>(이)에게 말을 걸어주세요!</html>");
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();

@@ -97,6 +97,7 @@ public class JuvenileTodoList extends TodoList {
 
 				// 집 배경일때의 알림패널 안보이게하기
 				MainFrame.pack_back.remove(MainFrame.dialogue_panel);
+				MainFrame.pack_back.remove(MainFrame.dragon_state_panel);
 				// 해당 인스턴스 안보이게 하기 (버튼 패널 안보이게 하기)
 				setVisible(false);
 				Juvenile downcast_dragon_juvenile = (Juvenile) MainFrame.dragon;
@@ -127,7 +128,7 @@ public class JuvenileTodoList extends TodoList {
 
 				// 집 배경일때의 알림패널 안보이게하기
 				MainFrame.pack_back.remove(MainFrame.dialogue_panel);
-
+				MainFrame.pack_back.remove(MainFrame.dragon_state_panel);
 				Juvenile downcast_dragon_juvenile = (Juvenile) MainFrame.dragon;
 				// 해당 인스턴스 안보이게하기 (버튼 패널 안보이게하기)
 				setVisible(false);
@@ -186,6 +187,7 @@ public class JuvenileTodoList extends TodoList {
 
 		// 집 배경의 알림내용 안보이게 하기
 		MainFrame.pack_back.remove(MainFrame.dialogue_panel);
+		MainFrame.pack_back.remove(MainFrame.dragon_state_panel);
 		// 해당 인스턴스 안보이게하기
 		setVisible(false);
 		MainFrame.todolist_juvenile = null;

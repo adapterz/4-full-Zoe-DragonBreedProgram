@@ -17,6 +17,7 @@ import Dragon.Dragon;
 import Dragon.Egg;
 import GuiRelatedClass.DialoguePanel;
 import GuiRelatedClass.DragonAttackPanel;
+import GuiRelatedClass.DragonStatePanel;
 import GuiRelatedClass.MonsterAttackPanel;
 import GuiRelatedClass.PackBackGround;
 import GuiRelatedClass.PaintManager;
@@ -35,6 +36,7 @@ public class MainFrame {
 	public static JFrame main_frame;
 	public static PaintManager main_background;
 	public static DialoguePanel dialogue_panel;
+	public static DragonStatePanel dragon_state_panel;
 	public static DragonAttackPanel dragon_attack_panel;
 	public static MonsterAttackPanel monster_attack_panel;
 	// 배경컴포넌트들 하나로 묶을 컨테이너
@@ -93,6 +95,10 @@ public class MainFrame {
 		monster_attack_panel = new MonsterAttackPanel("");
 		monster_attack_panel.setVisible(false);
 	
+		// 드래곤 상태 패널
+		dragon_state_panel = new DragonStatePanel("");
+		dragon_state_panel.setVisible(false);
+		
 		// 할일목록 패널
 		todolist_egg = new GuiTodoList.EggTodoList();
 		todolist_egg.setVisible(false);
@@ -100,7 +106,7 @@ public class MainFrame {
 
 		// 메인프레임 설정
 		main_frame.setResizable(false);
-		main_frame.setTitle("Dragon Cave - fan program");
+		main_frame.setTitle("Dragon Breeding program");
 		main_frame.setBounds(100, 100, 1280, 750);
 		main_frame.setLocationRelativeTo(null);
 		main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +115,8 @@ public class MainFrame {
 		pack_back.add(main_background, new Integer(0), 0);
 		pack_back.add(dialogue_panel, new Integer(1), 0);
 		pack_back.add(dragon_attack_panel, new Integer(1), 0);
+		pack_back.add(monster_attack_panel, new Integer(1), 0);
+		pack_back.add(dragon_state_panel, new Integer(1), 0);
 
 		main_frame.pack();
 
@@ -116,7 +124,7 @@ public class MainFrame {
 		main_frame.addKeyListener(new KeyListner());
 		// 초기화
 		dragon = null;
-		home = new Home();
+		home = null;
 		
 	}
 }
@@ -130,22 +138,23 @@ class KeyListner extends KeyAdapter {
 			System.exit(0);
 			break;
 		// 로딩창일때 엔터 누르면 다음 단계로 넘어가기
-		// 로딩 배경일 때만 키 이벤트 발생
 		case KeyEvent.VK_ENTER:
 			if (PaintManager.background == BackGround.LOADING) {
 
-				// 이름설정 창
+				// 드래곤 이름설정 창
 				new SetName();
-				// dragon 변수가 Egg 인스턴스 가리키게 하기
+				// Egg 생성
 				MainFrame.dragon = new Egg();
-				// 알 그림 그려주게 하기
+				// 그림담당 클래스가 알 그려주게 하기
 				PaintManager.stage = Growth.EGG;
 			}
+			// 게임 설명 창일 때 엔터 누르면 게임 시작
 			if(PaintManager.background == BackGround.GUIDE) {
-				// 집 환경
+				// 인게임 화면으로 바꿔주기
 				PaintManager.background = BackGround.HOME;
 				MainFrame.home = new Home();
 				MainFrame.todolist_egg.setVisible(true);
+				DragonStatePanel.insert_dialogue("<html>드래곤 알이에요.<br> 따뜻하게 대해주세요!</html>");
 				MainFrame.main_background.repaint();
 			}
 			break;
@@ -165,21 +174,21 @@ class KeyListner extends KeyAdapter {
 			setSize(300, 150);
 			setLocationRelativeTo(null);
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			// 판넬(라벨+텍스트필드)
+			// 드래곤 이름: 텍스트 필드 |입력버튼|
 			JPanel name_panel = new JPanel();
 			JLabel name_label = new JLabel("드래곤 이름:");
 			JTextField name_field = new JTextField(10);
 			JButton name_input = new JButton("입력");
 
+			// 입력버튼 눌렀을 때 이벤트
 			name_input.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// 텍스트 필드에서 입력한 이름 가져와서 dragon 변수가 가리키는 인스턴스의 name 필드에 할당
+					// 드래곤 이름 = 텍스트 필드에서 입력한 이름
 					MainFrame.dragon.name = name_field.getText().toString();
-					// dragon_main.change_status();
 
-					// 그려줄 상태 바꾸고 repaint().
+					// 게임 설명 화면 보여주기
 					PaintManager.background = BackGround.GUIDE;
 					MainFrame.main_background.repaint();
 					// 창 종료

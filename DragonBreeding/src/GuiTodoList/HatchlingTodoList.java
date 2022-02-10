@@ -112,6 +112,7 @@ public class HatchlingTodoList extends TodoList {
 			public void actionPerformed(ActionEvent e) {
 				// 집 배경일때의 알림패널 안보이게하기
 				MainFrame.pack_back.remove(MainFrame.dialogue_panel);
+				MainFrame.pack_back.remove(MainFrame.dragon_state_panel);
 				Hatchling downcast_dragon_hatchling = (Hatchling) MainFrame.dragon;
 				// 해당 인스턴스 안보이게하기 (버튼 패널 안보이게하기)
 				setVisible(false);

@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
 import GuiRelatedClass.DialoguePanel;
+import GuiRelatedClass.DragonStatePanel;
 import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
 import enums.BackGround;
@@ -45,7 +46,7 @@ public class Juvenile extends Reptile {
 		gender = hatchling_dragon.gender;
 		// 비행 숙련도
 		flight_proficiency = 0;
-
+		DragonStatePanel.insert_dialogue("날개가 자라 날 수 있어요!");
 	}
 
 	// 비행 연습 메서드
@@ -81,6 +82,7 @@ public class Juvenile extends Reptile {
 
 				// 할일목록 보이게 하기
 				MainFrame.todolist_juvenile.setVisible(true);
+				
 			}
 		};
 		Timer timer = new Timer("Timer");
@@ -102,30 +104,30 @@ public class Juvenile extends Reptile {
 			downcast_juvenile.likeable += 2;
 			downcast_juvenile.evolution++;
 			downcast_juvenile.full += 1;
-			downcast_juvenile.hp += 1;
+			downcast_juvenile.hp += 10;
 
 			// 알림내용
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+1, 체력+1)");
-
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+1, 체력+10)");
+			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 좋아하네요!</html>");
 		} else if (what_eat.equals("슈퍼웜")) {
 			// 행동에 따른 드래곤 상태값 변경
 			downcast_juvenile.likeable -= 3;
 			downcast_juvenile.evolution++;
 			downcast_juvenile.full += 2;
-			downcast_juvenile.hp += 2;
+			downcast_juvenile.hp += 20;
 
 			// 알림내용
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 슈퍼웜을 줬어요! (호감도-3, 진화게이지+1, 포만감+4, 체력+2)");
-
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 슈퍼웜을 줬어요! (호감도-3, 진화게이지+1, 포만감+4, 체력+20)");
+			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 짜증난다는 눈으로<br> 당신을 바라봤어요!</html>");
 		} else if (what_eat.equals("작은동물")) {
 			// 행동에 따른 드래곤 상태값 변경
 			downcast_juvenile.likeable += 5;
 			downcast_juvenile.evolution += 3;
 			downcast_juvenile.full += 5;
-			downcast_juvenile.hp += 7;
+			downcast_juvenile.hp += 70;
 			// 알림문구
-			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 작은동물을 줬어요! (호감도+5, 진화게이지+2, 포만감+5, 체력+7)");
-
+			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 작은동물을 줬어요! (호감도+5, 진화게이지+2, 포만감+5, 체력+70)");
+			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 매우 좋아하네요!</html>");
 		}
 		MainFrame.dragon = downcast_juvenile;
 	}
