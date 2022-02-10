@@ -141,6 +141,13 @@ class KeyListner extends KeyAdapter {
 				// 알 그림 그려주게 하기
 				PaintManager.stage = Growth.EGG;
 			}
+			if(PaintManager.background == BackGround.GUIDE) {
+				// 집 환경
+				PaintManager.background = BackGround.HOME;
+				MainFrame.home = new Home();
+				MainFrame.todolist_egg.setVisible(true);
+				MainFrame.main_background.repaint();
+			}
 			break;
 		}
 
@@ -173,11 +180,8 @@ class KeyListner extends KeyAdapter {
 					// dragon_main.change_status();
 
 					// 그려줄 상태 바꾸고 repaint().
-					PaintManager.background = BackGround.HOME;
+					PaintManager.background = BackGround.GUIDE;
 					MainFrame.main_background.repaint();
-					MainFrame.todolist_egg.setVisible(true);
-					// 집 환경
-					MainFrame.home = new Home();
 					// 창 종료
 					dispose();
 				}

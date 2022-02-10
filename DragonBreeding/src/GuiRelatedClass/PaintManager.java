@@ -16,6 +16,7 @@ public class PaintManager extends JPanel {
 	String path = System.getProperty("user.dir") + "/src/Image/";
 	// 배경 별 그림
 	private Image loadingScreen = new ImageIcon(path + "loading.png").getImage();
+	private Image guideScreen = new ImageIcon(path + "guide.png").getImage();
 	private Image mainScreen = new ImageIcon(path + "home.jpg").getImage();
 	private Image fightScreen = new ImageIcon(path + "yard_1.png").getImage();
 	private Image flightScreen = new ImageIcon(path + "flight.png").getImage();
@@ -57,6 +58,10 @@ public class PaintManager extends JPanel {
 		// 보여줄 배경: 로딩창
 		if (background == BackGround.LOADING) {
 			g.drawImage(loadingScreen, 0, 0, null);
+			// 보여줄 배경: 가이드 화면
+		} else if (background == BackGround.GUIDE) {
+			g.drawImage(guideScreen, 0, 0, null);
+
 			// 보여줄 배경: 싸움장면
 		} else if (background == BackGround.FIGHT) {
 			g.drawImage(fightScreen, 0, 0, null);
