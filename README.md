@@ -21,7 +21,7 @@
       온도는 드래곤이 알에서 부화했을 때 성별에 영향을 끼치며 온도가 25이하면 드래곤이 부화에 실패하고 사망합니다.
       
  ### B. 드래곤 클래스 ( 성장단계별로 클래스 구현)
- ####  한눈에 보기
+ ####  한눈에 보기(클래스 설계도)
  ![Untitled Workspace (3)](https://user-images.githubusercontent.com/98700133/153141040-e48456cb-5f51-4f0e-899f-4eb0e020128f.jpg)
 
   
@@ -34,8 +34,10 @@
   2. Hatchling과 Juvenile은 동일한 드래곤이지만 성장단계가 다른 것 뿐입니다. 한 클래스에 구현하면 따로 분기처리를 해줘야하고
      소속 멤버들도 다르기 때문에 다른 클래스에 각각 구현해줬습니다.
  
+ 
  * 일부 내용은 노션에 작성했습니다.
-   각 클래스 멤버 세부설명: https://closed-glade-095.notion.site/Dragon-Breeding-Program-4be473a05d48474aa27f2764fa98666c
+ 
+   Dragon 하위 클래스들 멤버 세부설명: https://closed-glade-095.notion.site/Dragon-Breeding-Program-4be473a05d48474aa27f2764fa98666c
 
 ### C. 몬스터 클래스
  * 드래곤과 싸울 대상 클래스
