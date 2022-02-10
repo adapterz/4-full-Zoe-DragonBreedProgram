@@ -34,78 +34,8 @@
   2. Hatchling과 Juvenile은 동일한 드래곤이지만 성장단계가 다른 것 뿐입니다. 한 클래스에 구현하면 따로 분기처리를 해줘야하고
      소속 멤버들도 다르기 때문에 다른 클래스에 각각 구현해줬습니다.
  
-#### 0. Dragon(추상클래스)
-
- * 드래곤 성장단계의 공통 사항이 들어갑니다.
- * 멤버변수
-   + name (이름)
-      - String
-    + likeable (호감도)
-      - byte
-    + evolution (진화게이지)
-      - byte
- * 멤버메서드
-    + is_evolution (진화조건 만족체크 메서드)
-      - 추상메서드, boolean 값 반환
-  
-#### 1-1. Egg extends Dragon
-
-* 성장단계가 알 일때의 클래스
-
-* 멤버메서드
-  + talk_to (알에게 말걸기)
-  + increase_degree_control (Home 온도 상승)
-  + decrease_degree_control (Home 온도 하락)
-  + is_evolution (진화조건 만족 체크)
-    - 오버라이딩
-
-#### 1-2. Reptile extends Dragon(추상클래스)
-
- * 알에서 부화한 이후의 성장단계
- 
- * 멤버변수
-   + full (포만감)
-      - int
-   + attack (공격력)
-      - int
-   + attack_speed (공격속도)
-      - int
-   + hp (체력)
-     - int
-   + gender (성별)
-     - enum : Gender
- * 멤버메서드
-   + stroke (드래곤 쓰다듬기)
-   + wash (드래곤 씻기기) 
-   + fight (드래곤과 싸우기)
-      - 드래곤이 몬스터를 공격하는 스레드
-      - 몬스터가 드래곤을 공격하는 스레드
-   + feed (드래곤에게 밥주기)
-     - 추상메서드
- 
-#### 2-1. Hatchling extends Reptile
-
- * 유아기 드래곤 클래스
- 
- * 멤버메서드
-   + feed (드래곤에게 밥주기)
-      - 오버라이딩
-   + is_evolution (진화조건 만족 체크)
-      - 오버라이딩
-
-#### 2-2. Juvenile extends Reptile
-
- * 성장기 드래곤 클래스
- 
- * 멤버변수
-    + flight_proficiency (비행숙련도)
-      - int
- * 멤버메서드
-    + flying_practice (비행연습하기)
-    + feed (드래곤에게 밥주기)
-      - 오버라이딩
-    + is_evolution (진화조건 만족 체크)
-      - 오버라이딩
+ * 일부 내용은 노션에 작성했습니다.
+   각 클래스 멤버 세부설명: https://closed-glade-095.notion.site/Dragon-Breeding-Program-4be473a05d48474aa27f2764fa98666c
 
 ### C. 몬스터 클래스
  * 드래곤과 싸울 대상 클래스
