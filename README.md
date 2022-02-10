@@ -226,10 +226,16 @@
 * 이름입력 창
   ![image](https://user-images.githubusercontent.com/98700133/153118742-88384669-0447-4379-9da0-3ca58f90cd10.png)
 
-  이름을 타이핑 한 뒤 '입력' 버튼창을 누르면 게임이 시작됩니다.
+  이름을 타이핑 한 뒤 '입력' 버튼창을 누르면 게임 설명화면이 뜹니다.
+  
+ * 게임 설명화면
+ 
+ ![image](https://user-images.githubusercontent.com/98700133/153349886-dcafb2f6-7ec6-4277-bcc5-eeeef3878ed9.png)
+
+  enter를 누르면 게임화면으로 넘어갑니다
   
  * 게임 화면
-  ![image](https://user-images.githubusercontent.com/98700133/153118811-d63a9632-0ec4-4458-882c-2fed5f628ef4.png)
+  ![image](https://user-images.githubusercontent.com/98700133/153349957-9d5b29b7-8765-4764-80ab-3bfd50bee56b.png)
 
   오른쪽 상단의 TodoList의 버튼들을 눌러서 Dragon을 상속받은 클래스들의 행동 메서드들을 호출합니다.
  
