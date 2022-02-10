@@ -58,9 +58,6 @@ public class Monster {
 					Thread.sleep(5000 / attack_speed);
 					// 몬스터 체력 0일 때 (드래곤의 승리, 해당 스레드 종료)
 					if (hp <= 0) {
-						// 싸움 종료
-						JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 패배했습니다.");
-						System.exit(0);
 						is_fight = false;
 					}
 					// 몬스터의 공격력만큼 드래곤 체력 하락
@@ -78,8 +75,13 @@ public class Monster {
 					else if (target_reptile.hp <= 0) {
 						MonsterAttackPanel.insert_dialogue("<html>몬스터가 " + attack_count
 								+ " 번째 공격해왔다.<br> (남은 드래곤 체력: 0)<br>공격력:" + attack + "</html>");
-						// 싸움 종료
-						is_fight = false;
+						// 몬스터 체력이 0 이상이고 드래곤 체력 0 이하이면 드래곤의 패배
+						if (hp > 0) {
+							// 싸움 종료
+							JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 패배했습니다.");
+							System.exit(0);
+							is_fight = false;
+						}
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
