@@ -43,6 +43,14 @@ public class Monster {
 
 		public MonsterAttackThread(Reptile reptile) {
 			target_reptile = reptile;
+
+			// 인자값 제대로 넘어왔는지 로그로 남기기
+			MainFrame.log_list
+					.add("Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.hp: " + target_reptile.hp);
+			MainFrame.log_list.add(
+					"Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.attack: " + target_reptile.attack);
+			MainFrame.log_list.add("Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.attack_speed: "
+					+ target_reptile.attack_speed);
 		}
 
 		@Override

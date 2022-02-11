@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -45,16 +46,15 @@ public class MainFrame {
 	public static GuiTodoList.EggTodoList todolist_egg;
 	public static GuiTodoList.HatchlingTodoList todolist_hatchling;
 	public static GuiTodoList.JuvenileTodoList todolist_juvenile;
-	// 로그 남기기 위한 변수
-	public static final Logger LOG = Logger.getGlobal();
+
+	// 로그로 남길 ArrayList
+	public static ArrayList<String> log_list = new ArrayList<String>();
 
 	// 프로그램 시작
 	public static void main(String[] args) {
 		// 메인 스레드
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				// 로그
-				LOG.info("프로그램 시작");
 				try {
 					MainFrame window = new MainFrame();
 					window.main_frame.setVisible(true);
@@ -88,17 +88,17 @@ public class MainFrame {
 		// 대화 패널
 		dialogue_panel = new DialoguePanel("");
 		dialogue_panel.setVisible(false);
-		
+
 		// 싸움알림 패널
 		dragon_attack_panel = new DragonAttackPanel("");
 		dragon_attack_panel.setVisible(false);
 		monster_attack_panel = new MonsterAttackPanel("");
 		monster_attack_panel.setVisible(false);
-	
+
 		// 드래곤 상태 패널
 		dragon_state_panel = new DragonStatePanel("");
 		dragon_state_panel.setVisible(false);
-		
+
 		// 할일목록 패널
 		todolist_egg = new GuiTodoList.EggTodoList();
 		todolist_egg.setVisible(false);
@@ -125,7 +125,7 @@ public class MainFrame {
 		// 초기화
 		dragon = null;
 		home = null;
-		
+
 	}
 }
 
@@ -149,7 +149,7 @@ class KeyListner extends KeyAdapter {
 				PaintManager.stage = Growth.EGG;
 			}
 			// 게임 설명 창일 때 엔터 누르면 게임 시작
-			if(PaintManager.background == BackGround.GUIDE) {
+			if (PaintManager.background == BackGround.GUIDE) {
 				// 인게임 화면으로 바꿔주기
 				PaintManager.background = BackGround.HOME;
 				MainFrame.home = new Home();

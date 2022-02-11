@@ -17,6 +17,7 @@ import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
 import enums.BackGround;
 import enums.Growth;
+import other.MakeFileForLog;
 
 // 드래곤의 성장단계가 '성강기'상태일 때 행동 메서드를 호출할 수 있는 버튼들과 상태창 버튼을 포함한 패널
 public class JuvenileTodoList extends TodoList {
@@ -200,8 +201,9 @@ public class JuvenileTodoList extends TodoList {
 		// 드래곤 객체의 호감도에 따라 다른 엔딩 분기처리
 		// 해피엔딩(호감도 23 초과)
 		if (MainFrame.dragon.likeable > 23) {
-			// 로그
-			MainFrame.LOG.info("Adult - 해피엔딩");
+			// 프로그램 종료 전 로그 파일로 남기기
+			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
+
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.HAPPY_END;
 			MainFrame.main_background.repaint();
@@ -209,9 +211,9 @@ public class JuvenileTodoList extends TodoList {
 		}
 		// 세드엔딩(호감도 7 미만)
 		else if (MainFrame.dragon.likeable < 7) {
+			// 프로그램 종료 전 로그 파일로 남기기
+			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
 
-			// 로그
-			MainFrame.LOG.info("Adult - 세드엔딩");
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.SAD_END;
 			MainFrame.main_background.repaint();
@@ -219,9 +221,9 @@ public class JuvenileTodoList extends TodoList {
 		}
 		// 노말엔드(호감도 7~23)
 		else {
+			// 프로그램 종료 전 로그 파일로 남기기
+			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
 
-			// 로그
-			MainFrame.LOG.info("Adult - 노말엔딩");
 			// PaintManager의 그려줄 배경 상태 변경
 			PaintManager.background = BackGround.NORMAL_END;
 			MainFrame.main_background.repaint();

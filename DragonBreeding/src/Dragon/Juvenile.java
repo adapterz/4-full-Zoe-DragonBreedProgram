@@ -11,6 +11,7 @@ import GuiRelatedClass.DragonStatePanel;
 import GuiRelatedClass.PaintManager;
 import Main.MainFrame;
 import enums.BackGround;
+import other.MakeFileForLog;
 
 /* 	최상위부모				Dragon (추상)
  * 	1차상속 		Egg 알   		Reptile (파충류,추상)
@@ -46,13 +47,23 @@ public class Juvenile extends Reptile {
 		gender = hatchling_dragon.gender;
 		// 비행 숙련도
 		flight_proficiency = 0;
+
+		// 인자값 제대로 넘어왔는지 로그로 남기기
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, name: " + name);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, likeable: " + likeable);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, hp: " + hp);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, attack: " + attack);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, attack_speed: " + attack_speed);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, full: " + full);
+		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, gender: " + gender);
+
+		// 드래곤 상태 가이드 패널
 		DragonStatePanel.insert_dialogue("날개가 자라 날 수 있어요!");
+
 	}
 
 	// 비행 연습 메서드
 	public void flying_practice() {
-		// 로그
-		MainFrame.LOG.info("Juvenile - 비행연습");
 		// 알림내용
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)와 비행연습을 갔어요!");
 		// 타이머(2초간 정지 후 알림 메세지)
@@ -82,7 +93,7 @@ public class Juvenile extends Reptile {
 
 				// 할일목록 보이게 하기
 				MainFrame.todolist_juvenile.setVisible(true);
-				
+
 			}
 		};
 		Timer timer = new Timer("Timer");
@@ -95,9 +106,9 @@ public class Juvenile extends Reptile {
 	// 콤보박스 요소: "먹이기", "과일", "슈퍼웜", "작은동물"
 	@Override
 	public void feed(String what_eat) {
-		// 로그
-		MainFrame.LOG.info("Juvenile - 밥주기");
-		
+		// 인자값 제대로 넘어왔는지 로그로 남기기
+		MainFrame.log_list.add("Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: " + what_eat);
+
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
 			// 행동에 따른 드래곤 상태값 변경
@@ -108,7 +119,7 @@ public class Juvenile extends Reptile {
 
 			// 알림내용
 			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 과일을 줬어요! (호감도+2, 진화게이지+1, 포만감+1, 체력+10)");
-			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 좋아하네요!</html>");
+			DragonStatePanel.insert_dialogue("<html>" + MainFrame.dragon.name + "<br>(이)가 좋아하네요!</html>");
 		} else if (what_eat.equals("슈퍼웜")) {
 			// 행동에 따른 드래곤 상태값 변경
 			downcast_juvenile.likeable -= 3;
@@ -118,7 +129,8 @@ public class Juvenile extends Reptile {
 
 			// 알림내용
 			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 슈퍼웜을 줬어요! (호감도-3, 진화게이지+1, 포만감+4, 체력+20)");
-			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 짜증난다는 눈으로<br> 당신을 바라봤어요!</html>");
+			DragonStatePanel
+					.insert_dialogue("<html>" + MainFrame.dragon.name + "<br>(이)가 짜증난다는 눈으로<br> 당신을 바라봤어요!</html>");
 		} else if (what_eat.equals("작은동물")) {
 			// 행동에 따른 드래곤 상태값 변경
 			downcast_juvenile.likeable += 5;
@@ -127,7 +139,7 @@ public class Juvenile extends Reptile {
 			downcast_juvenile.hp += 70;
 			// 알림문구
 			DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)에게 작은동물을 줬어요! (호감도+5, 진화게이지+2, 포만감+5, 체력+70)");
-			DragonStatePanel.insert_dialogue("<html>"+MainFrame.dragon.name+"<br>(이)가 매우 좋아하네요!</html>");
+			DragonStatePanel.insert_dialogue("<html>" + MainFrame.dragon.name + "<br>(이)가 매우 좋아하네요!</html>");
 		}
 		MainFrame.dragon = downcast_juvenile;
 	}
@@ -135,35 +147,31 @@ public class Juvenile extends Reptile {
 	// 진화 조건 만족 체크 혹은 사망여부 체크(모든 행동 메서드 이후 이 메서드를 호출해서 진화 조건 만족하면 성장 or 사망)
 	@Override
 	public boolean is_evolution() {
-		// 로그
-		MainFrame.LOG.info("Juvenile - 진화/사망 여부 체크");
-		
+
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
 		byte likeable_23 = downcast_juvenile.likeable;
 		byte evolution_15 = downcast_juvenile.evolution;
 		// 게임종료 조건
 		// 체력이 0 이하면 게임 종료
 		if (downcast_juvenile.hp <= 0) {
-			// 로그
-			MainFrame.LOG.info("Juvenile - 사망");
-			
+			// 프로그램 종료 전 로그 파일로 남기기
+			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
+
 			JOptionPane.showMessageDialog(null, "체력이 0 이하라 " + downcast_juvenile.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 포만감 0이면 게임 종료
 		if (downcast_juvenile.full <= 0) {
-			// 로그
-			MainFrame.LOG.info("Juvenile - 사망");
-			
+			// 프로그램 종료 전 로그 파일로 남기기
+			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
+
 			JOptionPane.showMessageDialog(null, "포만감이 0 이하라 " + downcast_juvenile.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);
 		}
 		// 진화조건 만족
 		// 호감도 23 이상이면 진화
 		if (likeable_23 > 23) {
-			// 로그
-			MainFrame.LOG.info("Juvenile - 진화");
-			
+
 			// 알림문구
 			DialoguePanel.insert_dialogue("호감도 " + likeable_23 + "(으)로 성장!");
 			// 진화조건 만족 시 true 반환
@@ -171,8 +179,6 @@ public class Juvenile extends Reptile {
 
 			// 진화게이지 15 이상이면 진화
 		} else if (evolution_15 > 15) {
-			// 로그
-			MainFrame.LOG.info("Juvenile - 진화");
 			// 알림문구
 			DialoguePanel.insert_dialogue("진화게이지 " + evolution_15 + "(으)로 성장!");
 

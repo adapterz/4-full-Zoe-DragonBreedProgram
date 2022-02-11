@@ -10,6 +10,7 @@ import Main.MainFrame;
 import enums.BackGround;
 import enums.Gender;
 import enums.Growth;
+import other.MakeFileForLog;
 import other.Monster;
 
 /* 	최상위부모				Dragon (추상)
@@ -38,8 +39,6 @@ abstract public class Reptile extends Dragon {
 // 행동메서드
 	// 드래곤을 쓰다듬기
 	public void stroke() {
-		// 로그
-		MainFrame.LOG.info("Reptile - 쓰다듬기");
 		// 알림내용
 		DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)를 쓰다듬어줬더니 좋아하네요! (호감도+2, 진화게이지+1, 포만감-1)");
 
@@ -53,8 +52,6 @@ abstract public class Reptile extends Dragon {
 
 	// 드래곤을 씻기기
 	public void wash() {
-		// 로그
-		MainFrame.LOG.info("Reptile - 씻기기");
 		// 알림문구
 		DialoguePanel.insert_dialogue(MainFrame.dragon.name + "(이)를 씻겨줬어요!(호감도+1, 진화게이지+2, 포만감-2)");
 
@@ -75,8 +72,6 @@ abstract public class Reptile extends Dragon {
 	// 몬스터가 드래곤을 공격하는 스레드와 드래곤이 몬스터를 공격하는 스레드 따로 호출 (각 객체의 공격속도에 따라 공격간격 정해짐)
 	// 매 공격시 공격력만큼 체력 깎음
 	public void fight() {
-		// 로그
-		MainFrame.LOG.info("Reptile - 전투");
 		// 몬스터 마주침 (해당 메서드의 지역변수)
 		Monster monster = new Monster();
 		JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)는 야생의 몬스터를 만났다.");
@@ -101,6 +96,14 @@ abstract public class Reptile extends Dragon {
 
 		public DragonAttackThread(Monster monster) {
 			target_monster = monster;
+
+			// 인자값 제대로 넘어왔는지 로그로 남기기
+			MainFrame.log_list
+					.add("Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.hp: " + target_monster.hp);
+			MainFrame.log_list.add(
+					"Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.attack: " + target_monster.attack);
+			MainFrame.log_list.add("Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.attack_speed: "
+					+ target_monster.attack_speed);
 		}
 
 		@Override
@@ -116,6 +119,8 @@ abstract public class Reptile extends Dragon {
 					Thread.sleep(5000 / attack_speed);
 					// 드래곤 체력 0일 때 (패배, 게임 종료)
 					if (hp <= 0) {
+						// 프로그램 종료 전 로그 파일로 남기기
+						MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
 
 						JOptionPane.showMessageDialog(null, MainFrame.dragon.name + "(이)가 패배했습니다.");
 						System.exit(0);
