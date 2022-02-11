@@ -17,8 +17,6 @@ public class PaintManager extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// 상대경로
-	String path = System.getProperty("user.dir") + "/src/Image/";
 	// 배경 별 그림
 	private Image loadingScreen = new ImageIcon(getClass().getClassLoader().getResource("loading.png")).getImage();
 	private Image guideScreen = new ImageIcon(getClass().getClassLoader().getResource("guide.png")).getImage();
