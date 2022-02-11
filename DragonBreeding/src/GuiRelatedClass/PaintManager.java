@@ -3,6 +3,7 @@ package GuiRelatedClass;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -12,24 +13,28 @@ import enums.Growth;
 
 // 배경과 드래곤을 그려줄 그리기 전용 패널 클래스
 public class PaintManager extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 상대경로
 	String path = System.getProperty("user.dir") + "/src/Image/";
 	// 배경 별 그림
-	private Image loadingScreen = new ImageIcon(path + "loading.png").getImage();
-	private Image guideScreen = new ImageIcon(path + "guide.png").getImage();
-	private Image mainScreen = new ImageIcon(path + "home.jpg").getImage();
-	private Image fightScreen = new ImageIcon(path + "yard_1.png").getImage();
-	private Image flightScreen = new ImageIcon(path + "flight.png").getImage();
-	private Image happy_endScreen = new ImageIcon(path + "happyending.png").getImage();
-	private Image endScreen = new ImageIcon(path + "normalending.png").getImage();;
-	private Image sad_endScreen = new ImageIcon(path + "sadending.png").getImage();;
+	private Image loadingScreen = new ImageIcon(getClass().getClassLoader().getResource("loading.png")).getImage();
+	private Image guideScreen = new ImageIcon(getClass().getClassLoader().getResource("guide.png")).getImage();
+	private Image mainScreen = new ImageIcon(getClass().getClassLoader().getResource("home.jpg")).getImage();
+	private Image fightScreen = new ImageIcon(getClass().getClassLoader().getResource("yard_1.png")).getImage();
+	private Image flightScreen = new ImageIcon(getClass().getClassLoader().getResource("flight.png")).getImage();
+	private Image happy_endScreen = new ImageIcon(getClass().getClassLoader().getResource("happyending.png")).getImage();
+	private Image endScreen = new ImageIcon(getClass().getClassLoader().getResource("normalending.png")).getImage();;
+	private Image sad_endScreen = new ImageIcon(getClass().getClassLoader().getResource("sadending.png")).getImage();;
 
 	// 드래곤의 성장단계별 그림
-	private Image egg_image = new ImageIcon(path + "egg.png").getImage();
-	private Image hatchling_image = new ImageIcon(path + "hatchling.png").getImage();
-	private Image juvenile_image = new ImageIcon(path + "juvenile.png").getImage();
-	private Image juvenile_flight = new ImageIcon(path + "juvenile_symmetry.png").getImage();
-	private Image adult_image = new ImageIcon(path + "adult.png").getImage();
+	private Image egg_image = new ImageIcon(getClass().getClassLoader().getResource("egg.png")).getImage();
+	private Image hatchling_image = new ImageIcon(getClass().getClassLoader().getResource("hatchling.png")).getImage();
+	private Image juvenile_image = new ImageIcon(getClass().getClassLoader().getResource( "juvenile.png")).getImage();
+	private Image juvenile_flight = new ImageIcon(getClass().getClassLoader().getResource( "juvenile_symmetry.png")).getImage();
+	private Image adult_image = new ImageIcon(getClass().getClassLoader().getResource("adult.png")).getImage();
 
 	// 어떤 배경과 드래곤을 그려줄지 정해주는 상태(enum) 변수
 	public static Growth stage; // 보여줄 드래곤의 성장단계 상태

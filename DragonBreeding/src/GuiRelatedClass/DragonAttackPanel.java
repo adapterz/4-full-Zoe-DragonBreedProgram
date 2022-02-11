@@ -13,6 +13,10 @@ import Main.MainFrame;
 
 // 드래곤이 몬스터와 싸우는 메서드를 호출했을 때 드래곤이 몬스터를 공격한 알림내용 보여줄 패널
 public class DragonAttackPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 알림내용 작성할 라벨
 	private JLabel dialogue_label;
 	// 여백

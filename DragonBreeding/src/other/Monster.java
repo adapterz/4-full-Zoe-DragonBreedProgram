@@ -24,7 +24,7 @@ public class Monster {
 		// 체력과 공격력 랜덤하게 생성
 		hp = 100 + random.nextInt(30);
 		attack = 20 + random.nextInt(30);
-		attack_speed = 1 + random.nextInt(5);
+		attack_speed = 3 + random.nextInt(5);
 	}
 
 	// Reptile 클래스의 fight 메서드에 호출해줄 메서드
@@ -44,7 +44,7 @@ public class Monster {
 		public MonsterAttackThread(Reptile reptile) {
 			target_reptile = reptile;
 
-			// 인자값 제대로 넘어왔는지 로그로 남기기
+			// 인자값 제대로 넘어왔는지 로그로 남기기 
 			MainFrame.log_list
 					.add("Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.hp: " + target_reptile.hp);
 			MainFrame.log_list.add(

@@ -11,6 +11,10 @@ import Main.MainFrame;
 
 // 드래곤 객체의 행동 메서드를 호출시켜주는 이벤트 버튼을 눌렀을 때 알림 내용을 보여줄 패널
 public class DialoguePanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 알림내용 작성할 라벨
 	private JLabel dialogue_label;
 	// 여백

@@ -10,7 +10,11 @@ import javax.swing.JPanel;
 import Main.MainFrame;
 
 public class DragonStatePanel extends JPanel {
-	// 알림내용 작성할 라벨
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		// 알림내용 작성할 라벨
 		private JLabel dialogue_label;
 		// 여백
 		private JLabel blank;

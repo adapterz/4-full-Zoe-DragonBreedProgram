@@ -56,8 +56,9 @@ public class MainFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
 					MainFrame window = new MainFrame();
-					window.main_frame.setVisible(true);
+					MainFrame.main_frame.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -164,6 +165,11 @@ class KeyListner extends KeyAdapter {
 
 // 로딩창->메인 게임화면 넘어갈 때 호출할 이름입력 창 
 	class SetName extends JFrame {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		// 생성자
 		public SetName() {

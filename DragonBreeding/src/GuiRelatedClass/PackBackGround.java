@@ -10,6 +10,11 @@ import javax.swing.JLayeredPane;
 
 public class PackBackGround extends JLayeredPane {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PackBackGround() {
 		super();
 		setSize(1280, 720);

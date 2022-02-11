@@ -20,6 +20,10 @@ import enums.Growth;
 // 드래곤의 성장단계가 '유아기'상태일 때 행동 메서드를 호출할 수 있는 버튼들과 상태창 버튼을 포함한 패널
 public class HatchlingTodoList extends TodoList {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9188690795585243354L;
 	// 누르면 Hatchling 클래스 행동 메서드 호출할 버튼 생성
 	private JButton wash;
 	private JButton stroke;

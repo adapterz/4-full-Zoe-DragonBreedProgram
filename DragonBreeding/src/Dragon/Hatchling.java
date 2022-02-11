@@ -35,7 +35,7 @@ public class Hatchling extends Reptile {
 		// 공격력
 		attack = 20 + random.nextInt(20);
 		// 공격속도
-		attack_speed = 1 + random.nextInt(10);
+		attack_speed = 3 + random.nextInt(5);
 		// 포만감
 		full = 7;
 		// 인자값 제대로 넘어왔는지 로그로 남기기

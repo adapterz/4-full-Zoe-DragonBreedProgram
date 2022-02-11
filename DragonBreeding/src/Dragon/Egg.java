@@ -21,7 +21,7 @@ public class Egg extends Dragon {
 	// 집 온도조절 (환경 클래스인 Home 클래스의 home_degree를 조절할 메서드)
 	// 집의 온도(home_degree)는 알이 무사히 부화할 수 있는지, 알이 부화했을 때 드래곤의 성별에 영향을 끼칩니다
 	// 온도 올려주기
-	public void increase_degree_control() {
+	public void increase_degree_control() { 
 		// Home 클래스의 온도조절 메서드 호출
 		MainFrame.home.increase_degree();
 		// 해당 이벤트에 대한 드래곤의 상태값 변화
