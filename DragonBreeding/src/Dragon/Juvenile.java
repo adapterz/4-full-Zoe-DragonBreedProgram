@@ -48,7 +48,7 @@ public class Juvenile extends Reptile {
 		// 비행 숙련도
 		flight_proficiency = 0;
 
-		// 인자값 제대로 넘어왔는지 로그로 남기기
+		// 인자값 제대로 넘어왔는지 로그로 남기기 
 		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, name: " + name);
 		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, likeable: " + likeable);
 		MainFrame.log_list.add("Juvenile 생성자 호출_인자값 체크, hp: " + hp);
@@ -107,7 +107,7 @@ public class Juvenile extends Reptile {
 	@Override
 	public void feed(String what_eat) {
 		// 인자값 제대로 넘어왔는지 로그로 남기기
-		MainFrame.log_list.add("Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: " + what_eat);
+		 MainFrame.log_list.add("Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: " + what_eat);
 
 		Juvenile downcast_juvenile = (Juvenile) MainFrame.dragon;
 		if (what_eat.equals("과일")) {
@@ -163,7 +163,7 @@ public class Juvenile extends Reptile {
 		// 포만감 0이면 게임 종료
 		if (downcast_juvenile.full <= 0) {
 			// 프로그램 종료 전 로그 파일로 남기기
-			MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
+		 MakeFileForLog.makeFile("dragon_breeding_log", MainFrame.log_list);
 
 			JOptionPane.showMessageDialog(null, "포만감이 0 이하라 " + downcast_juvenile.name + "(이)가 죽었습니다. 게임을 종료합니다");
 			System.exit(0);

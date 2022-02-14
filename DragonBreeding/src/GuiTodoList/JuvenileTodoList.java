@@ -22,11 +22,15 @@ import other.MakeFileForLog;
 // 드래곤의 성장단계가 '성강기'상태일 때 행동 메서드를 호출할 수 있는 버튼들과 상태창 버튼을 포함한 패널
 public class JuvenileTodoList extends TodoList {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 누르면 Juvenile 클래스 메서드 호출할 버튼 생성
 	private JButton stroke;
 	private JButton flight;
 	private JButton fight;
-	private JComboBox feed;
+	private JComboBox<?> feed;
 	// 진화요건 달성여부 (매 버튼이벤트 이후 진화요건 성립여부 체크)
 	static private boolean is_evolution = false;
 

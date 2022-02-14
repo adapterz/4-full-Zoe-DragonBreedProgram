@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 
 abstract public class TodoList extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel TODO;
 
 	public TodoList() {

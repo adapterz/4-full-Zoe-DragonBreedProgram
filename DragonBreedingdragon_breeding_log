@@ -1,0 +1,22 @@
+Hatchling 생성자 호출_인자값 체크, name: 조이
+Hatchling 생성자 호출_인자값 체크, likeable: 2
+Hatchling 클래스_feed 메서드 호출_인자값 체크, what_eat: 과일
+Hatchling 클래스_feed 메서드 호출_인자값 체크, what_eat: 귀뚜라미
+Hatchling 클래스_feed 메서드 호출_인자값 체크, what_eat: 피닉스웜
+Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.hp: 211
+Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.attack: 33
+Monster 클래스_MonsterAttackThread 스레드호출_인자값 체크, target_reptile.attack_speed: 6
+Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.hp: 116
+Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.attack: 22
+Reptile 클래스_DragonAttackThread 스레드호출_인자값 체크, target_monster.attack_speed: 4
+Hatchling 클래스_feed 메서드 호출_인자값 체크, what_eat: 과일
+Juvenile 생성자 호출_인자값 체크, name: 조이
+Juvenile 생성자 호출_인자값 체크, likeable: 5
+Juvenile 생성자 호출_인자값 체크, hp: 179
+Juvenile 생성자 호출_인자값 체크, attack: 36
+Juvenile 생성자 호출_인자값 체크, attack_speed: 8
+Juvenile 생성자 호출_인자값 체크, full: 24
+Juvenile 생성자 호출_인자값 체크, gender: MAN
+Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: 작은동물
+Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: 과일
+Juvenile 클래스_feed 메서드 호출_인자값 체크, what_eat: 작은동물

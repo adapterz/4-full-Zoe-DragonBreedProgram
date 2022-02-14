@@ -15,6 +15,10 @@ import enums.Growth;
 
 // 드래곤의 성장단계가 '알'상태일 때 행동 메서드를 호출할 수 있는 버튼들과 상태창 버튼을 포함한 패널
 public class EggTodoList extends TodoList {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 누르면 Egg 클래스의 행동 메서드 호출할 버튼 생성
 	private JButton decrease_degree_control;
 	private JButton increase_degree_control;
